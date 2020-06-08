@@ -41,7 +41,7 @@ a table in a Db2 Event Store database::
 
 """
 
-__version__='2.8.1'
+__version__='2.8.2'
 
 __all__ = ['Insert', 'SQLStatement', 'configure_connection', 'download_toolkit', 'insert', 'run_statement']
 from streamsx.eventstore._eventstore import insert,configure_connection,download_toolkit,run_statement,SQLStatement,Insert
