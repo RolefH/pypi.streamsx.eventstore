@@ -159,19 +159,15 @@ def _download_driver_file_from_url(url, tmpfile):
     return tmpfile
 
 def _get_jdbc_driver():
-    jdbc_driver_lib = '/user-home/_global_/eventstore/ibm-event_2.11-1.0.jar'
-    if os.path.isfile(jdbc_driver_lib):
-        return jdbc_driver_lib
+    tmpfile = gettempdir() + '/ibm-event_2.11-1.0.jar'
+    if os.path.isfile(tmpfile):
+        return tmpfile
     else:
-        tmpfile = gettempdir() + '/ibm-event_2.11-1.0.jar'
+        _download_driver_file_from_url("https://github.com/IBMStreams/streamsx.eventstore/raw/develop/com.ibm.streamsx.eventstore/opt/ibm-event_2.11-1.0.jar", tmpfile)
         if os.path.isfile(tmpfile):
             return tmpfile
         else:
-            _download_driver_file_from_url("https://github.com/IBMStreams/streamsx.eventstore/raw/develop/com.ibm.streamsx.eventstore/opt/ibm-event_2.11-1.0.jar", tmpfile)
-            if os.path.isfile(tmpfile):
-                return tmpfile
-            else:
-                raise ValueError("Invalid JDBC driver")
+            raise ValueError("Invalid JDBC driver")
 
 
 class SQLStatement(db.JDBCStatement):
