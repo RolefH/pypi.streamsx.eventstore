@@ -75,14 +75,14 @@ def configure_connection(instance, name='eventstore', database=None, connection=
 
     Example for creating a configuration for a Streams instance with connection details::
 
-        from streamsx.rest import Instance
-        import streamsx.topology.context
         from icpd_core import icpd_util
+        from streamsx.rest_primitives import Instance
+        import streamsx.eventstore as es
         
         cfg=icpd_util.get_service_instance_details(name='your-streams-instance')
         cfg[streamsx.topology.context.ConfigParams.SSL_VERIFY] = False
         instance = Instance.of_service(cfg)
-        app_cfg = configure_connection(instance, database='TESTDB', connection='HostIP:Port1;HostIP:Port2', user='db2-user', password='db2-password')
+        app_cfg = es.configure_connection(instance, database='TESTDB', connection='HostIP:Port1;HostIP:Port2', user='db2-user', password='db2-password')
 
 
     Args:
